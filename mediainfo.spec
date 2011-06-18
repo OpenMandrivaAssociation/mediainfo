@@ -59,6 +59,7 @@ Qt-based graphical user interface for %{name}.
 %package gui-common
 Summary:        Common files for %{name} GUIs
 Group:          Sound
+BuildArch:	noarch
 
 %description gui-common
 Common files for %{name} GUI packages.
