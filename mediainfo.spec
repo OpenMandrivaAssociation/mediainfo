@@ -1,6 +1,6 @@
 Name:		mediainfo
-Version:	0.7.45
-Release:	%mkrel 1
+Version:	0.7.54
+Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
@@ -94,7 +94,6 @@ pushd Project/QMake/GUI
 popd
 
 %install
-rm -rf %{buildroot}
 pushd Project/GNU/CLI
 	%makeinstall_std
 popd
@@ -144,17 +143,12 @@ EOF
 #fix binary name
 mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc Release/ReadMe_CLI_Linux.txt
 %doc License.html History_CLI.txt
 %{_bindir}/mediainfo
 
 %files gui-wx
-%defattr(-,root,root)
 %doc Release/ReadMe_GUI_Linux.txt
 %doc License.html History_GUI.txt
 %{_bindir}/%{name}-wx
@@ -164,6 +158,5 @@ rm -rf %{buildroot}
 %{_datadir}/icons/hicolor/*/apps/*.png
 
 %files gui-qt
-%defattr(-,root,root)
 %{_bindir}/%{name}-qt
 %{_datadir}/applications/%{_real_vendor}-%{name}-qt.desktop
