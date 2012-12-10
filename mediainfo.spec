@@ -1,6 +1,6 @@
 Name:		mediainfo
-Version:	0.7.54
-Release:	1
+Version:	0.7.45
+Release:	%mkrel 1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
@@ -69,7 +69,7 @@ Common files for %{name} GUI packages.
 %patch0 -p0 -b .buildfix
 
 # fix EOLs and rights
-dos2unix -v License.html History_*.txt 
+dos2unix License.html History_*.txt 
 chmod 644 *.html *.txt Release/*.txt
 
 %build
@@ -117,7 +117,7 @@ done
 
 # menu-entry
 mkdir -p %{buildroot}/%{_datadir}/applications/
-cat > %{buildroot}/%{_datadir}/applications/%{_real_vendor}-%{name}-wx.desktop << EOF
+cat > %{buildroot}/%{_datadir}/applications/%{vendor}-%{name}-wx.desktop << EOF
 [Desktop Entry]
 Type=Application
 Name=MediaInfo
@@ -129,7 +129,7 @@ Categories=AudioVideo;AudioVideoEditing;
 EOF
 
 mkdir -p %{buildroot}/%{_datadir}/applications/
-cat > %{buildroot}/%{_datadir}/applications/%{_real_vendor}-%{name}-qt.desktop << EOF
+cat > %{buildroot}/%{_datadir}/applications/%{vendor}-%{name}-qt.desktop << EOF
 [Desktop Entry]
 Type=Application
 Name=MediaInfo
@@ -144,19 +144,29 @@ EOF
 mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 
 %files
+%defattr(-,root,root)
 %doc Release/ReadMe_CLI_Linux.txt
 %doc License.html History_CLI.txt
 %{_bindir}/mediainfo
 
 %files gui-wx
+%defattr(-,root,root)
 %doc Release/ReadMe_GUI_Linux.txt
 %doc License.html History_GUI.txt
 %{_bindir}/%{name}-wx
-%{_datadir}/applications/%{_real_vendor}-%{name}-wx.desktop
+%{_datadir}/applications/%{vendor}-%{name}-wx.desktop
 
 %files gui-common
 %{_datadir}/icons/hicolor/*/apps/*.png
 
 %files gui-qt
+%defattr(-,root,root)
 %{_bindir}/%{name}-qt
-%{_datadir}/applications/%{_real_vendor}-%{name}-qt.desktop
+%{_datadir}/applications/%{vendor}-%{name}-qt.desktop
+
+
+%changelog
+* Sat Jun 18 2011 Jani Välimaa <wally@mandriva.org> 0.7.45-1mdv2011.0
++ Revision: 685928
+- import mediainfo
+
