@@ -1,6 +1,6 @@
 Name:		mediainfo
 Version:	0.7.45
-Release:	%mkrel 1
+Release:	2
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
