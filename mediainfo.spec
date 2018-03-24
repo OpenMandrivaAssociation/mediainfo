@@ -1,20 +1,21 @@
 Name:		mediainfo
-Version:	0.7.45
-Release:	2
+Version:	18.03
+Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
-URL:		http://mediainfo.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}_%{version}.tar.bz2
+URL:		http://mediaarea.net/en/MediaInfo
+Source0:	http://mediaarea.net/download/source/%{name}/%{version}/%{name}_%{version}.tar.bz2
 Patch0:		mediainfo_0.7.44-fix-qtgui-build.patch
 BuildRequires:	dos2unix
-BuildRequires:	mediainfo-devel
-BuildRequires:	libzen-devel
-BuildRequires:	pkgconfig
-BuildRequires:	wxgtku2.8-devel
-BuildRequires: 	zlib-devel
+BuildRequires:	pkgconfig(libmediainfo) >= 18.03
+BuildRequires:	pkgconfig(libzen) >= 0.4.37
+BuildRequires:	pkgconfig(zlib)
+BuildRequires:	wxgtku3.0-devel
 BuildRequires:	qt4-devel
+BuildRequires:	kde5-macros
 BuildRequires:	imagemagick
+
 
 %description
 MediaInfo supplies technical and tag information about a video or audio file.
