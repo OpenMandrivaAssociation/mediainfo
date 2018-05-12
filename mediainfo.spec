@@ -112,8 +112,8 @@ pushd Project/QMake/GUI
 popd
 
 # icon
-install -Dm 644 Source/Ressource/Image/MediaInfo.png \
-	%{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+#install -Dm 644 Source/Ressource/Image/MediaInfo.png \
+#	%{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 
 #for i in 16 32 48 64 128; do
 #	mkdir -p %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/
