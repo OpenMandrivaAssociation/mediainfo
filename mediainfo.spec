@@ -14,7 +14,7 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	wxgtku3.0-devel
 BuildRequires:	qt4-devel
 BuildRequires:	qt5-qtbase-macros
-#BuildRequires:	
+BuildRequires:	kde4-macros
 #BuildRequires:	kde5-macros
 BuildRequires:	imagemagick
 
