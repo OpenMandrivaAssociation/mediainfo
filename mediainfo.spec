@@ -163,12 +163,13 @@ mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 %{_datadir}/applications/%{name}-gui.desktop
 %{_datadir}/apps/konqueror/servicemenus/%{name}-gui.desktop
 %{_datadir}/kde4/services/ServiceMenus/%{name}-gui.desktop
-%{_kde5_services}/ServiceMenus/%{name}-gui.desktop
+%{_datadir}/kservices5/ServiceMenus/mediainfo-gui.desktop
 
 %files gui-common
 %{_datadir}/icons/hicolor/*/apps/*.png
 %{_datadir}/metainfo/%{name}-gui.metainfo.xml
 %{_datadir}/pixmaps/%{name}.xpm
+%{_datadir}/icons/hicolor/*/apps/*.svg
 
 %files gui-qt
 %defattr(-,root,root)
