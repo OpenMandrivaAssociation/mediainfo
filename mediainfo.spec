@@ -13,6 +13,8 @@ BuildRequires:	pkgconfig(libzen) >= 0.4.37
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	wxgtku3.0-devel
 BuildRequires:	qt4-devel
+BuildRequires:	qt5-qtbase-macros
+#BuildRequires:	
 #BuildRequires:	kde5-macros
 BuildRequires:	imagemagick
 
