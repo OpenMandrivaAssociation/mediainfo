@@ -1,20 +1,24 @@
 Name:		mediainfo
-Version:	0.7.45
-Release:	2
+Version:	18.03
+Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
-URL:		http://mediainfo.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}_%{version}.tar.bz2
-Patch0:		mediainfo_0.7.44-fix-qtgui-build.patch
+URL:		http://mediaarea.net/en/MediaInfo
+Source0:	http://mediaarea.net/download/source/%{name}/%{version}/%{name}_%{version}.tar.bz2
+#Patch0:		mediainfo_0.7.44-fix-qtgui-build.patch
+Patch1:		mediainfo-qt.patch
 BuildRequires:	dos2unix
-BuildRequires:	mediainfo-devel
-BuildRequires:	libzen-devel
-BuildRequires:	pkgconfig
-BuildRequires:	wxgtku2.8-devel
-BuildRequires: 	zlib-devel
+BuildRequires:	pkgconfig(libmediainfo) >= 18.03
+BuildRequires:	pkgconfig(libzen) >= 0.4.37
+BuildRequires:	pkgconfig(zlib)
+BuildRequires:	wxgtku3.0-devel
 BuildRequires:	qt4-devel
+BuildRequires:	qt5-qtbase-macros
+BuildRequires:	kde4-macros
+#BuildRequires:	kde5-macros
 BuildRequires:	imagemagick
+
 
 %description
 MediaInfo supplies technical and tag information about a video or audio file.
@@ -66,7 +70,8 @@ Common files for %{name} GUI packages.
 
 %prep
 %setup -q -n MediaInfo
-%patch0 -p0 -b .buildfix
+#patch0 -p0 -b .buildfix
+%patch1 -p1
 
 # fix EOLs and rights
 dos2unix License.html History_*.txt 
@@ -107,13 +112,13 @@ pushd Project/QMake/GUI
 popd
 
 # icon
-install -Dm 644 Source/Ressource/Image/MediaInfo.png \
-	%{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+#install -Dm 644 Source/Ressource/Image/MediaInfo.png \
+#	%{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 
-for i in 16 32 48 64 128; do
-	mkdir -p %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/
-	convert -scale ${i} Source/Ressource/Image/MediaInfo.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/%{name}.png
-done
+#for i in 16 32 48 64 128; do
+#	mkdir -p %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/
+#	convert -scale ${i} Source/Ressource/Image/MediaInfo.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/%{name}.png
+#done
 
 # menu-entry
 mkdir -p %{buildroot}/%{_datadir}/applications/
@@ -155,9 +160,16 @@ mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 %doc License.html History_GUI.txt
 %{_bindir}/%{name}-wx
 %{_datadir}/applications/%{vendor}-%{name}-wx.desktop
+%{_datadir}/applications/%{name}-gui.desktop
+%{_datadir}/apps/konqueror/servicemenus/%{name}-gui.desktop
+%{_datadir}/kde4/services/ServiceMenus/%{name}-gui.desktop
+%{_datadir}/kservices5/ServiceMenus/mediainfo-gui.desktop
 
 %files gui-common
 %{_datadir}/icons/hicolor/*/apps/*.png
+%{_datadir}/metainfo/%{name}-gui.metainfo.xml
+%{_datadir}/pixmaps/%{name}.xpm
+%{_datadir}/icons/hicolor/*/apps/*.svg
 
 %files gui-qt
 %defattr(-,root,root)
