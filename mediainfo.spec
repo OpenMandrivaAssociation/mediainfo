@@ -1,5 +1,5 @@
 Name:		mediainfo
-Version:	18.03
+Version:	18.12
 Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
@@ -13,9 +13,11 @@ BuildRequires:	pkgconfig(libmediainfo) >= 18.03
 BuildRequires:	pkgconfig(libzen) >= 0.4.37
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	wxgtku3.0-devel
-BuildRequires:	qt4-devel
+#BuildRequires:	qt4-devel
+BuildRequires:	qt5-devel
+BuildRequires:	qt5-qtbase-devel
 BuildRequires:	qt5-qtbase-macros
-BuildRequires:	kde4-macros
+#BuildRequires:	kde4-macros
 #BuildRequires:	kde5-macros
 BuildRequires:	imagemagick
 
@@ -94,7 +96,7 @@ popd
 
 # build Qt based GUI
 pushd Project/QMake/GUI
-	%qmake_qt4
+	%qmake_qt5
 	%make
 popd
 
