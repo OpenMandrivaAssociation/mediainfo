@@ -7,7 +7,7 @@ License:	GPL
 URL:		http://mediaarea.net/en/MediaInfo
 Source0:	http://mediaarea.net/download/source/%{name}/%{version}/%{name}_%{version}.tar.bz2
 #Patch0:		mediainfo_0.7.44-fix-qtgui-build.patch
-Patch1:		mediainfo-qt.patch
+#Patch1:		mediainfo-qt.patch
 BuildRequires:	dos2unix
 BuildRequires:	pkgconfig(libmediainfo) >= 18.03
 BuildRequires:	pkgconfig(libzen) >= 0.4.37
@@ -73,7 +73,7 @@ Common files for %{name} GUI packages.
 %prep
 %setup -q -n MediaInfo
 #patch0 -p0 -b .buildfix
-%patch1 -p1
+#patch1 -p1
 
 # fix EOLs and rights
 dos2unix License.html History_*.txt 
