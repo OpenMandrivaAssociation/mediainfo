@@ -1,5 +1,5 @@
 Name:		mediainfo
-Version:	18.03
+Version:	18.12
 Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
@@ -7,15 +7,17 @@ License:	GPL
 URL:		http://mediaarea.net/en/MediaInfo
 Source0:	http://mediaarea.net/download/source/%{name}/%{version}/%{name}_%{version}.tar.bz2
 #Patch0:		mediainfo_0.7.44-fix-qtgui-build.patch
-Patch1:		mediainfo-qt.patch
+#Patch1:		mediainfo-qt.patch
 BuildRequires:	dos2unix
 BuildRequires:	pkgconfig(libmediainfo) >= 18.03
 BuildRequires:	pkgconfig(libzen) >= 0.4.37
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	wxgtku3.0-devel
-BuildRequires:	qt4-devel
+#BuildRequires:	qt4-devel
+BuildRequires:	qt5-devel
+BuildRequires:	qt5-qtbase-devel
 BuildRequires:	qt5-qtbase-macros
-BuildRequires:	kde4-macros
+#BuildRequires:	kde4-macros
 #BuildRequires:	kde5-macros
 BuildRequires:	imagemagick
 
@@ -71,7 +73,7 @@ Common files for %{name} GUI packages.
 %prep
 %setup -q -n MediaInfo
 #patch0 -p0 -b .buildfix
-%patch1 -p1
+#patch1 -p1
 
 # fix EOLs and rights
 dos2unix License.html History_*.txt 
@@ -94,7 +96,7 @@ popd
 
 # build Qt based GUI
 pushd Project/QMake/GUI
-	%qmake_qt4
+	%qmake_qt5
 	%make
 popd
 
@@ -173,7 +175,7 @@ mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 
 %files gui-qt
 %defattr(-,root,root)
-%{_bindir}/%{name}-qt
+#{_bindir}/%{name}-qt
 %{_datadir}/applications/%{vendor}-%{name}-qt.desktop
 
 
