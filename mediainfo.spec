@@ -175,7 +175,7 @@ mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 
 %files gui-qt
 %defattr(-,root,root)
-%{_bindir}/%{name}-qt
+#{_bindir}/%{name}-qt
 %{_datadir}/applications/%{vendor}-%{name}-qt.desktop
 
 
