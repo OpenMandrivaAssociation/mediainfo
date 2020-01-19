@@ -1,13 +1,11 @@
 Name:		mediainfo
-Version:	19.07
+Version:	19.09
 Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
 URL:		http://mediaarea.net/en/MediaInfo
 Source0:	http://mediaarea.net/download/source/%{name}/%{version}/%{name}_%{version}.tar.bz2
-#Patch0:		mediainfo_0.7.44-fix-qtgui-build.patch
-#Patch1:		mediainfo-qt.patch
 BuildRequires:	dos2unix
 BuildRequires:	pkgconfig(libmediainfo) >= 18.03
 BuildRequires:	pkgconfig(libzen) >= 0.4.37
