@@ -1,5 +1,5 @@
 Name:		mediainfo
-Version:	19.09
+Version:	20.03
 Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
