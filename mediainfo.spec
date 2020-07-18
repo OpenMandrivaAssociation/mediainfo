@@ -1,6 +1,6 @@
 Name:		mediainfo
 Version:	20.03
-Release:	1
+Release:	2
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
@@ -11,12 +11,9 @@ BuildRequires:	pkgconfig(libmediainfo) >= 18.03
 BuildRequires:	pkgconfig(libzen) >= 0.4.37
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	wxgtku3.0-devel
-#BuildRequires:	qt4-devel
 BuildRequires:	qt5-devel
 BuildRequires:	qt5-qtbase-devel
 BuildRequires:	qt5-qtbase-macros
-#BuildRequires:	kde4-macros
-#BuildRequires:	kde5-macros
 BuildRequires:	imagemagick
 
 
@@ -70,8 +67,6 @@ Common files for %{name} GUI packages.
 
 %prep
 %setup -q -n MediaInfo
-#patch0 -p0 -b .buildfix
-#patch1 -p1
 
 # fix EOLs and rights
 dos2unix License.html History_*.txt 
@@ -81,34 +76,34 @@ chmod 644 *.html *.txt Release/*.txt
 # build CLI
 pushd Project/GNU/CLI
 	autoreconf -vfi
-	%configure2_5x --disable-static
-	%make
+	%configure --disable-static
+	%make_build
 popd
 
 # build GUI
 pushd Project/GNU/GUI
 	autoreconf -vfi
-	%configure2_5x --disable-static
-	%make
+	%configure --disable-static
+	%make_build
 popd
 
 # build Qt based GUI
 pushd Project/QMake/GUI
 	%qmake_qt5
-	%make
+	%make_build
 popd
 
 %install
 pushd Project/GNU/CLI
-	%makeinstall_std
+	%make_install
 popd
 
 pushd Project/GNU/GUI
-	%makeinstall_std
+	%make_install
 popd
 
 pushd Project/QMake/GUI
-	%makeinstall_std INSTALL_ROOT=%{buildroot}
+	%make_install INSTALL_ROOT=%{buildroot}
 popd
 
 # icon
@@ -175,10 +170,3 @@ mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 %defattr(-,root,root)
 #{_bindir}/%{name}-qt
 %{_datadir}/applications/%{vendor}-%{name}-qt.desktop
-
-
-%changelog
-* Sat Jun 18 2011 Jani Välimaa <wally@mandriva.org> 0.7.45-1mdv2011.0
-+ Revision: 685928
-- import mediainfo
-
