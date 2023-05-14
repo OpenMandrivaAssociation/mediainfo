@@ -1,6 +1,6 @@
 Name:		mediainfo
-Version:	21.09
-Release:	2
+Version:	23.04
+Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
