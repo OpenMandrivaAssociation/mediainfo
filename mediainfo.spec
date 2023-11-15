@@ -1,6 +1,6 @@
 Name:		mediainfo
 Version:	23.10
-Release:	1
+Release:	2
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
@@ -100,10 +100,14 @@ popd
 
 pushd Project/GNU/GUI
 	%make_install
+	#fix binary name
+	mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 popd
 
 pushd Project/QMake/GUI
 	%make_install INSTALL_ROOT=%{buildroot}
+	mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-qt
+	ln -s %{name}-qt %{buildroot}%{_bindir}/%{name}-gui
 popd
 
 # icon
@@ -140,8 +144,6 @@ Terminal=false
 Categories=AudioVideo;AudioVideoEditing;
 EOF
 
-#fix binary name
-mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 
 %files
 %defattr(-,root,root)
@@ -168,5 +170,6 @@ mv %{buildroot}%{_bindir}/%{name}-gui %{buildroot}%{_bindir}/%{name}-wx
 
 %files gui-qt
 %defattr(-,root,root)
-#{_bindir}/%{name}-qt
+%{_bindir}/%{name}-gui
+%{_bindir}/%{name}-qt
 %{_datadir}/applications/%{vendor}-%{name}-qt.desktop
