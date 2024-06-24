@@ -10,7 +10,7 @@ BuildRequires:	dos2unix
 BuildRequires:	pkgconfig(libmediainfo) >= 21.09
 BuildRequires:	pkgconfig(libzen) >= 0.4.39
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	wxgtku3.0-devel
+BuildRequires:	wxwidgets-devel
 BuildRequires:	qt5-devel
 BuildRequires:	qt5-qtbase-devel
 BuildRequires:	qt5-qtbase-macros
