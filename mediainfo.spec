@@ -1,11 +1,11 @@
 Name:		mediainfo
-Version:	23.10
-Release:	2
+Version:	24.05
+Release:	1
 Summary:	Supplies technical and tag information about a video or audio file
 Group:		Sound
 License:	GPL
-URL:		http://mediaarea.net/en/MediaInfo
-Source0:	http://mediaarea.net/download/source/%{name}/%{version}/%{name}_%{version}.tar.bz2
+URL:		https://mediaarea.net/en/MediaInfo
+Source0:	https://mediaarea.net/download/source/%{name}/%{version}/%{name}_%{version}.tar.bz2
 BuildRequires:	dos2unix
 BuildRequires:	pkgconfig(libmediainfo) >= 21.09
 BuildRequires:	pkgconfig(libzen) >= 0.4.39
