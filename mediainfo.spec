@@ -11,9 +11,13 @@ BuildRequires:	pkgconfig(libmediainfo) >= 21.09
 BuildRequires:	pkgconfig(libzen) >= 0.4.39
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	wxwidgets-devel
-BuildRequires:	qt5-devel
-BuildRequires:	qt5-qtbase-devel
-BuildRequires:	qt5-qtbase-macros
+BuildRequires:	cmake(Qt6Core)
+BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6Network)
+BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:	cmake(Qt6Xml)
+BuildRequires:	cmake(Qt6WebEngineWidgets)
+BuildRequires:	qmake-qt6
 BuildRequires:	imagemagick
 
 
@@ -89,7 +93,7 @@ popd
 
 # build Qt based GUI
 pushd Project/QMake/GUI
-	%qmake_qt5
+	qmake_qt6
 	%make_build
 popd
 
