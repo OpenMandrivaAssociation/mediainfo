@@ -93,7 +93,7 @@ popd
 
 # build Qt based GUI
 pushd Project/QMake/GUI
-	qmake_qt6
+	qmake-qt6
 	%make_build
 popd
 
