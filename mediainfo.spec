@@ -13,6 +13,7 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	wxwidgets-devel
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6LinguistTools)
 BuildRequires:	cmake(Qt6Network)
 BuildRequires:	cmake(Qt6Widgets)
 BuildRequires:	cmake(Qt6Xml)
