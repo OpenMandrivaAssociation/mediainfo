@@ -8,6 +8,7 @@ Url:		https://mediaarea.net/en/MediaInfo
 Source0:	https://mediaarea.net/download/source/%{name}/%{version}/%{name}_%{version}.tar.bz2
 BuildRequires:	dos2unix
 BuildRequires:	imagemagick
+BuildRequires:	ncurses
 BuildRequires:	qmake-qt6
 BuildRequires:	wxwidgets-devel
 BuildRequires:	pkgconfig(libmediainfo) >= 25.07
