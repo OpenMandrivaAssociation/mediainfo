@@ -10,6 +10,7 @@ BuildRequires:	dos2unix
 BuildRequires:	imagemagick
 BuildRequires:	ncurses
 BuildRequires:	qmake-qt6
+BuildRequires:qt6-qttools-linguist-tools
 BuildRequires:	wxwidgets-devel
 BuildRequires:	pkgconfig(libmediainfo) >= 25.07
 BuildRequires:	pkgconfig(libzen) >= 0.4.41
