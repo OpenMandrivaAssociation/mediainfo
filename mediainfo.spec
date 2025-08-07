@@ -21,6 +21,7 @@ BuildRequires:	cmake(Qt6Network)
 BuildRequires:	cmake(Qt6Widgets)
 BuildRequires:	cmake(Qt6Xml)
 BuildRequires:	cmake(Qt6WebEngineWidgets)
+BuildRequires:	pkgconfig(pyside6)
 BuildRequires:	pkgconfig(zlib)
 
 %description
