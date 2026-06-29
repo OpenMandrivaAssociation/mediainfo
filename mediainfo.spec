@@ -1,28 +1,36 @@
+%define		oname	MediaInfo
+
 Summary:	Supplies technical and tag information about a video or audio file
 Name:	mediainfo
-Version:	25.07
-Release:	1
-License:	BSD-2-Clause-Patent
+Version:		26.05
+Release:		1
+License:		BSD-2-Clause-Patent
 Group:	Sound
 Url:		https://mediaarea.net/en/MediaInfo
 Source0:	https://mediaarea.net/download/source/%{name}/%{version}/%{name}_%{version}.tar.bz2
-BuildRequires:	dos2unix
-BuildRequires:	imagemagick
-BuildRequires:	ncurses
-BuildRequires:	qmake-qt6
-BuildRequires:qt6-qttools-linguist-tools
-BuildRequires:	wxwidgets-devel
-BuildRequires:	pkgconfig(libmediainfo) >= 25.07
-BuildRequires:	pkgconfig(libzen) >= 0.4.41
-BuildRequires:	cmake(Qt6Core)
-BuildRequires:	cmake(Qt6Gui)
-BuildRequires:	cmake(Qt6LinguistTools)
-BuildRequires:	cmake(Qt6Network)
-BuildRequires:	cmake(Qt6Widgets)
-BuildRequires:	cmake(Qt6Xml)
-BuildRequires:	cmake(Qt6WebEngineWidgets)
-BuildRequires:	pkgconfig(pyside6)
-BuildRequires:	pkgconfig(zlib)
+BuildRequires:		autoconf
+BuildRequires:		automake
+BuildRequires:		cmake
+BuildRequires:		dos2unix
+BuildRequires:		imagemagick
+BuildRequires:		libtool
+BuildRequires:		libtool-base
+BuildRequires:		make
+BuildRequires:		ncurses
+BuildRequires:		qmake-qt6
+BuildRequires:		qt6-qttools-linguist-tools
+BuildRequires:		wxwidgets-devel
+BuildRequires:		cmake(Qt6Core)
+BuildRequires:		cmake(Qt6Gui)
+BuildRequires:		cmake(Qt6LinguistTools)
+BuildRequires:		cmake(Qt6Network)
+BuildRequires:		cmake(Qt6Widgets)
+BuildRequires:		cmake(Qt6Xml)
+BuildRequires:		cmake(Qt6WebEngineWidgets)
+BuildRequires:		pkgconfig(libmediainfo) >= 26.05
+BuildRequires:		pkgconfig(libzen) >= 0.4.41
+BuildRequires:		pkgconfig(pyside6)
+BuildRequires:		pkgconfig(zlib)
 
 %description
 MediaInfo supplies technical and tag information about a video or audio file.
@@ -101,7 +109,7 @@ Common files for %{name} GUI packages.
 #-----------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n MediaInfo
+%autosetup -p1 -n %{oname}
 
 # Fix EOLs and rights
 dos2unix License.html History_*.txt 
@@ -109,17 +117,25 @@ chmod 644 *.html *.txt Release/*.txt
 
 
 %build
+# Slibtool won't work with mediainfo
+ln -sf %{_bindir}/libtoolize slibtoolize
+export PATH=$PWD:$PATH
+export LIBTOOLIZE=%{_bindir}/libtoolize
+export LIBTOOL=%{_bindir}/libtool
+
 # Build CLI
 pushd Project/GNU/CLI
-	autoreconf -vfi
-	%configure --disable-static
+	./autogen.sh
+	%configure --disable-static --with-dll
+	export CFLAGS="%{optflags} -fPIC"
+	export CXXFLAGS="%{optflags} -fPIC"
 	%make_build
 popd
 
 # Build wxwidgets based GUI
 pushd Project/GNU/GUI
-	autoreconf -vfi
-	%configure --disable-static
+	./autogen.sh
+	%configure --disable-static --with-wx-gui --with-wxwidgets --with-dll
 	%make_build
 popd
 
@@ -147,11 +163,13 @@ pushd Project/QMake/GUI
 	ln -s %{name}-qt %{buildroot}%{_bindir}/%{name}-gui
 popd
 
+# FIXME: Why this does not work?
 #  Provide more icons
-for i in 16 32 48 64 128; do
-	mkdir -p %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/
-	convert -scale ${i} Source/Resource/Image/MediaInfo.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/%{name}.png
-done
+#for i in 16 32 48 64 128; do
+#	mkdir -p %%{buildroot}%%{_datadir}/icons/hicolor/${i}x${i}/apps/
+#	magick -scale ${i} Source/Resource/Image/MediaInfo.png %%{buildroot}%%{_datadir}/icons/hicolor/${i}x${i}/apps/%%{name}.png
+#done
+
 
 # Add menu entries for GUI apps
 mkdir -p %{buildroot}%{_datadir}/applications/
